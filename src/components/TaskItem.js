@@ -1,10 +1,14 @@
 import React,{ useState, useRef } from 'react';
-import Moment from 'react-moment';
+
+// components import
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DatePicker from "react-datepicker";
-import { useMutation } from '@apollo/react-hooks';
 import EditableLabel from 'react-inline-editing';
 import Runner from './Runner';
+import Moment from 'react-moment';
+
+// Apollo Hooks and gql
+import { useMutation } from '@apollo/react-hooks';
 import { UPDATE_TODO, MARK_COMPLETE, CLEAR_TODO ,DELETE_TODO,UPDATE_TITLE } from '../services/TaskGql';
 
 
@@ -23,6 +27,8 @@ const TaskItem = (props) => {
   // create datepick ref to close datepicker on completed
 
   const dateRef = useRef();
+
+  // Graph QL Functions
 
   const markCompleted = () => {
     dateRef.current.setOpen(false);
@@ -47,7 +53,7 @@ const TaskItem = (props) => {
       <FontAwesomeIcon className="ml-1 text-primary" icon="calendar-alt" />
     </div>
   );
-    // Ask question if delete option is chosen
+    // Ask check question if delete option is chosen
     if (deleting) return (
         <div className="row">
             <div className="col-8 text-center">
@@ -68,6 +74,7 @@ const TaskItem = (props) => {
     <div className="row">
       <div className="col-md-5 col-lg-5 col-xl-5 col-sm-4 col-xs-4 font-weight-bold my-auto">
         <div className="row align-items-center">
+          {/* Delete Button */}
           <FontAwesomeIcon
             icon="trash-alt"
             className="text-primary mr-1"
@@ -76,6 +83,7 @@ const TaskItem = (props) => {
             }}
           />
           <div className="mt-2">
+          {/* Editable Title Label */}
           <EditableLabel 
           text={props.todo.title} 
           onFocusOut={changeTitle} />
@@ -83,11 +91,14 @@ const TaskItem = (props) => {
         </div>
       </div>
       <div className="col-1 text-center">
+          {/* Runner animation based on dueDate */}
           <Runner dueDate={dueDate} completedDate={props.todo.completedDate} />
       </div>
       <div className="col text-right">
+        {/* Check if Task Completed */}
         {props.todo.completedDate == null ? (
           <div>
+            {/* Datepicker to update dueDate or Mark Completed */}
             <DatePicker
               ref={dateRef}
               withPortal
@@ -115,6 +126,7 @@ const TaskItem = (props) => {
           </div>
         ) : (
           <div className="mt-1">
+            {/* Show a star if task is completed */}
             <FontAwesomeIcon
               icon="star"
               size="2x"

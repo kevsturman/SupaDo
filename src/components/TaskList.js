@@ -1,7 +1,11 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+
+// components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TaskItem from './TaskItem';
+
+// Apollo Hooks and gql
+import { useQuery } from '@apollo/react-hooks';
 import { getTasksQuery } from '../services/TaskGql';
 
 
