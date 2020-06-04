@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery, useSubscription } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TaskItem from './TaskItem';
 import { getTasksQuery } from '../services/TaskGql';
